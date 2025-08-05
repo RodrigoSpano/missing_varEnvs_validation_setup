@@ -1,8 +1,19 @@
 {
   "name": "validate_missing_var_envs",
+  "description": "Validate missing environment variables in a project",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:RodrigoSpano/missing_varEnvs_validation_setup.git",
+  "keywords": [
+    "validate",
+    "missing",
+    "environment",
+    "variables",
+    "project",
+    "setup",
+    "validate-missing-envs",
+    "validate-missing-envs-setup"
+  ],
   "author": "RodrigoSpano <spanorodri@gmail.com>",
   "license": "MIT",
   "dependencies": {

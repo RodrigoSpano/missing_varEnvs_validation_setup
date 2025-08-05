@@ -134,3 +134,57 @@ Let's break down the code step by step:
 - Splitting the `NATS_SERVERS` string into an array provides support for **multiple server configurations**.
 
 By using this `envs.ts` file, your application becomes more robust and easier to configure across different environments (development, testing, production).
+
+## How to Use
+
+1. **Set your own "variables":**
+   You need to go to the envs.ts file created where the validation code is, and upload there your own variables with their types. You can see that there are some examples, just replace them with your own, they would help you understand how it works
+
+### step by step
+
+    - first modify the interface with your variables and types
+
+```ts
+interface EnvVars {
+  PORT: number;
+  NATS_SERVERS: string[];
+  DB_URI: string;
+}
+```
+
+- Then modify the envsSchema with joi types
+
+```ts
+  .object({
+  PORT: joi.number().required(),
+  NATS_SERVERS: joi.array().items(joi.string()).required(),
+  DB_URI: joi.string().required(),
+  })
+  .unknown(true);
+```
+
+- if you need to add some extra logic to a specific variables do it as the "NATS_SERVERS" example >>
+
+```ts
+const { error, value } = envsSchema.validate({
+  ...process.env,
+  NATS_SERVERS: process.env.NATS_SERVERS?.split(","),
+});
+```
+
+- at last but not least, you need to define them in the constant that is going to be exported, this constant is the one you are gonna use to access the variables.
+
+```ts
+export const envs = {
+  port: envVars.PORT,
+  nats_servers: envVars.NATS_SERVERS,
+  db_uri: envVars.DB_URI,
+};
+```
+
+- example of how to call the envs in the app
+
+```ts
+  import { envs } from "@config/envs.ts
+  console.log(envs.ports)
+```
