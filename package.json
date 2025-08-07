@@ -1,9 +1,13 @@
 {
-  "name": "validate_missing_var_envs",
+  "name": "envs-var-validator",
   "description": "Validate missing environment variables in a project",
   "version": "1.0.0",
-  "main": "config/envs.js",
+  "type": "module",
   "repository": "git@github.com:RodrigoSpano/missing_varEnvs_validation_setup.git",
+  "homepage": "https: //github.com/RodrigoSpano/missing_varEnvs_validation_setup",
+  "bugs": {
+    "url": "https://github.com/RodrigoSpano/missing_varEnvs_validation_setup/issues"
+  },
   "keywords": [
     "validate",
     "missing",
@@ -15,10 +19,19 @@
     "validate-missing-envs-setup"
   ],
   "author": "RodrigoSpano <spanorodri@gmail.com>",
+  "files": [
+    "envs",
+    "scripts"
+  ],
+  "main": "envs/index.ts",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "sh ./scripts/post_install.sh"
+  },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "joi": "^17.13.3"
+    "joi": "^17.13.3",
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@types/node": "^22.15.3"
