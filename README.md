@@ -1,6 +1,6 @@
-# `envs.ts` - Environment Variable Configuration
+# `envs/index.ts` - Environment Variable Configuration
 
-This file (`envs.ts`) is responsible for managing and validating the environment variables required for this application to run correctly. It ensures that essential configuration parameters are present and adhere to the expected data types.
+This file (`envs/index.ts`) is responsible for managing and validating the environment variables required for this application to run correctly. It ensures that essential configuration parameters are present and adhere to the expected data types.
 
 ## Purpose
 
@@ -116,7 +116,7 @@ Let's break down the code step by step:
     In other parts of your application, you can import the `envs` constant to access the configured environment variables with type safety:
 
     ```typescript
-    import { envs } from "./envs";
+    import { envs } from "./envs/index.ts";
 
     console.log(`Server listening on port: ${envs.port}`);
     console.log(`NATS Servers: ${envs.nats_servers}`);
@@ -133,12 +133,12 @@ Let's break down the code step by step:
 - The use of `dotenv` allows for **flexible configuration** through `.env` files.
 - Splitting the `NATS_SERVERS` string into an array provides support for **multiple server configurations**.
 
-By using this `envs.ts` file, your application becomes more robust and easier to configure across different environments (development, testing, production).
+By using this `envs/index.ts` file, your application becomes more robust and easier to configure across different environments (development, testing, production).
 
 ## How to Use
 
 1. **Set your own "variables":**
-   You need to go to the envs.ts file created where the validation code is, and upload there your own variables with their types. You can see that there are some examples, just replace them with your own, they would help you understand how it works
+   You need to go to the envs/index.ts file created where the validation code is, and upload there your own variables with their types. You can see that there are some examples, just replace them with your own, they would help you understand how it works
 
 ### step by step
 
@@ -185,6 +185,6 @@ export const envs = {
 - example of how to call the envs in the app
 
 ```ts
-  import { envs } from "@config/envs.ts
+  import { envs } from "@config/envs/index.ts
   console.log(envs.ports)
 ```
