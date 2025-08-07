@@ -1,7 +1,7 @@
 {
   "name": "envs-var-validator",
   "description": "Validate missing environment variables in a project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "repository": "git@github.com:RodrigoSpano/missing_varEnvs_validation_setup.git",
   "homepage": "https: //github.com/RodrigoSpano/missing_varEnvs_validation_setup",
