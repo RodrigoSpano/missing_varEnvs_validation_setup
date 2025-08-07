@@ -1,9 +1,6 @@
 #! /bin/bash -xe
 
 set -e
-
-MISSING_DEPS="joi@17.13.3 dotenv@16.5.0"
-
 # Function to find the project root (where package.json exists, but not inside node_modules)
 find_project_root() {
     CURRENT_DIR="$(pwd)"
@@ -11,7 +8,7 @@ find_project_root() {
         if [ -f "$CURRENT_DIR/package.json" ] && \
            [ -d "$CURRENT_DIR/node_modules" ] && \
            { [ -f "$CURRENT_DIR/yarn.lock" ] || [ -f "$CURRENT_DIR/pnpm-lock.yaml" ] || [ -f "$CURRENT_DIR/package-lock.json" ]; }; then
-            echo "$CURRENT_DIR"
+            cd $CURRENT_DIR
             return 0
         else
             cd ../
@@ -22,8 +19,9 @@ find_project_root() {
     exit 1
 }
 
-PROJECT_ROOT=$(find_project_root)
-cd "$PROJECT_ROOT"
+# PROJECT_ROOT=$(find_project_root)
+# cd "$PROJECT_ROOT"
+find_project_root
 
 mkdir -p ./src/envs && cp ./node_modules/envs-var-validator/envs/index.ts ./src/envs/index.ts
 
@@ -49,6 +47,8 @@ detect_package_manager() {
 PACKAGE_MANAGER=$(detect_package_manager)
 
 echo "Detected package manager: $PACKAGE_MANAGER"
+
+MISSING_DEPS="joi@17.13.3 dotenv@16.5.0"
 
 case $PACKAGE_MANAGER in
         "yarn")
