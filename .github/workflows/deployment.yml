@@ -1,0 +1,30 @@
+name: Deploy in NPM hub
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  npm_deployment:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    deployment:
+      name: "prod"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "23.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: npm publish
+        id: npm_publish
+        run: |
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
