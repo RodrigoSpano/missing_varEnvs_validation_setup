@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    deployment:
+    environment:
       name: "prod"
 
     steps:
